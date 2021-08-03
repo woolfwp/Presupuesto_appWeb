@@ -7,20 +7,20 @@
     <title>Aplicacion Presupuestos</title>
     <link href="styles.css" rel="stylesheet" />
 </head>
-<body>
+<body onload='cargarApp()'>
 
     <div class="cabecero">
         <div class="presupueso">
             <div class="presupuesto_titulo">
                 Presupuesto Disponible
             </div>
-            <div class="presupuesto_valor">
+            <div class="presupuesto_valor" id='presupuesto'>
                 + 70,000
             </div>
             <div class="presupuesto_ingreso clearStyles">
                 <div class="presupuesto_ingreso--texto">Ingresos</div>
                 <div class="right">
-                    <div class="presupuesto_ingreso--valor">+30,000</div>
+                    <div class="presupuesto_ingreso--valor" id='ingreso'>+30,000</div>
                     <div class="presupuesto_ingreso--porcentaje">&nbsp;</div>
                 </div>
             </div>
@@ -28,8 +28,8 @@
             <div class="presupuesto_egreso clearStyles">
                 <div class="presupuesto_egreso--texto">Egresos</div>
                 <div class="right clearStyles">
-                    <div class="presupuesto_egreso--valor">-1000</div>
-                    <div class="presupuesto_egreso--porcentaje">&nbsp;</div>
+                    <div class="presupuesto_egreso--valor" id='egresos'>-1000</div>
+                    <div class="presupuesto_egreso--porcentaje"id= 'porcentaje'>47%;</div>
                 </div>
             </div>
         
