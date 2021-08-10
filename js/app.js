@@ -4,13 +4,14 @@ const ingresos = [
 ];
 
 const egresos = [
-    new Egreso('pago tarjeta', 1000),
+    new Egreso('pago tarjeta', 1100),
     new Egreso('comida', 300)
 ];
 
 let cargarApp = () =>{
     cargarCabecero();
     cargarIngresos();
+    cargarEgresos();
 }
 
 let totalIngresos =() =>{
@@ -64,7 +65,8 @@ const crearIngresoHTML = (ingreso) =>{
         <div class="elemento_valor">${formatoMoneda(ingreso.valor)}</div>
         <div class="elemento_eliminar">
             <button class='elemento_eliminar--btn'>
-                <ion-icon name="trash-outline"></ion-icon>
+                <ion-icon name="trash-outline"
+                onclick= 'eliminarIngreso(${ingreso.id})'></ion-icon>
             </button>
         </div>
     </div>
@@ -72,3 +74,46 @@ const crearIngresoHTML = (ingreso) =>{
     `;
     return ingresoHTML; 
 }
+
+const eliminarIngreso =(id) =>{
+   let indiceEliminar = ingresos.findIndex(ingreso => ingreso.id === id);
+   ingresos.splice(indiceEliminar, 1);
+   cargarCabecero();
+   cargarIngresos();
+
+}
+
+const cargarEgresos = () =>{
+    let egresosHTML = '';
+    for(let egreso of egresos){
+        egresosHTML += crearEgresosHTML(egreso);
+    }
+    document.getElementById('lista-egresos').innerHTML = egresosHTML;
+}
+
+const crearEgresosHTML = (egreso) =>{
+    let egresoHTML= `
+     <div class="elemento clearStyles">
+         <div class="elemento_descripcion">${egreso.descripcion}</div>
+         <div class="right clearStyles">
+             <div class="elemento_valor">${formatoMoneda(egreso.valor)}</div>
+             <div class="elemento_porcentaje">${formatoPorcentaje(egreso.valor/totalEgresos())}</div>
+             <div class="elemento_eliminar">
+                 <button class='elemento_eliminar--btn'>
+                    <ion-icon name="trash-outline" 
+                    onclick= 'eliminarEngreso(${egreso.id})'></ion-icon>
+                </button> 
+             </div>
+         </div>
+      </div>
+    `;
+    return egresoHTML;
+}
+
+const eliminarEngreso =(id) =>{
+    let indiceEliminar = egresos.findIndex(egreso => egreso.id === id);
+    egresos.splice(indiceEliminar, 1);
+    cargarCabecero();
+    cargarEgresos();
+ 
+ }
